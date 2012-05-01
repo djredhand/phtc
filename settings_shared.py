@@ -11,8 +11,8 @@ MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'postgresql_psycopg2' # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
 DATABASE_NAME = 'phtc' # Or path to database file if using sqlite3.
-DATABASE_USER = 'jdavis'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'jedavis13'         # Not used with sqlite3.
+DATABASE_USER = ''             # Not used with sqlite3.
+DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
@@ -81,7 +81,12 @@ INSTALLED_APPS = (
     'south',
     'django_nose',
     'compressor',
+    'registration',
+    'userprofile'
 )
+
+ACCOUNT_ACTIVATION_DAYS = 7
+AUTH_PROFILE_MODULE = 'userprofile.UserProfile'
 
 PAGEBLOCKS = ['pageblocks.TextBlock',
               'pageblocks.HTMLBlock',
@@ -97,10 +102,10 @@ PAGEBLOCKS = ['pageblocks.TextBlock',
 SENTRY_REMOTE_URL = 'http://sentry.ccnmtl.columbia.edu/sentry/store/'
 # remember to set the SENTRY_KEY in a local_settings.py
 # as documented in the wiki
-SENTRY_SITE = 'forest'
+SENTRY_SITE = 'phtc'
 
 THUMBNAIL_SUBDIR = "thumbs"
-EMAIL_SUBJECT_PREFIX = "[forest] "
+EMAIL_SUBJECT_PREFIX = "[phtc] "
 EMAIL_HOST = 'localhost'
 SERVER_EMAIL = "phtc@ccnmtl.columbia.edu"
 

@@ -10,6 +10,8 @@ urlpatterns = patterns('',
                        (r'^export/$','main.views.exporter'),
                        (r'^import/$','main.views.importer'),
                        (r'^clone/$','main.views.cloner'),
+                       
+                       (r'^registration/', include('registration.urls')),
 
                        ('^accounts/',include('djangowind.urls')),
                        (r'^admin/(.*)', admin.site.root),
@@ -37,9 +39,9 @@ urlpatterns = patterns('',
                        (r'^_quiz/',include('quizblock.urls')),
                        (r'^_careermap/',include('careermapblock.urls')),
                        (r'^_fridge/',include('fridgeblock.urls')),
-                       (r'^edit/(?P<path>.*)$','forest.main.views.edit_page',{},'edit-page'),
-                       (r'^instructor/(?P<path>.*)$','forest.main.views.instructor_page'),
-                       (r'^(?P<path>.*)$','forest.main.views.page'),
+                       (r'^edit/(?P<path>.*)$','phtc.main.views.edit_page',{},'edit-page'),
+                       (r'^instructor/(?P<path>.*)$','phtc.main.views.instructor_page'),
+                       (r'^(?P<path>.*)$','phtc.main.views.page'),
                        
 ) 
 
