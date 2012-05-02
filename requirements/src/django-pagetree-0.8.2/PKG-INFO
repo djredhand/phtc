@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: django-pagetree
+Version: 0.8.2
+Summary: Tree of Pages helper application
+Home-page: http://wiki.ccnmtl.columbia.edu/
+Author: Anders Pearson
+Author-email: anders@columbia.edu
+License: BSD
+Description: Application for managing trees of pages
+Platform: any
