@@ -82,7 +82,7 @@ INSTALLED_APPS = (
     'django_nose',
     'compressor',
     'registration',
-    'userprofile'
+    'userprofile',
 )
 
 ACCOUNT_ACTIVATION_DAYS = 7

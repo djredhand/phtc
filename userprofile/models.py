@@ -6,8 +6,13 @@ from django.db.models.signals import post_save
 # Extend User model
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    address = models.TextField()
     sex = models.TextField()
+    age = models.TextField()
+    origin = models.TextField()
+    ethnicity = models.TextField()
+    disadvantaged = models.TextField()
+    employment_location = models.TextField()
+    position = models.TextField()
     
     def __str__(self):
         return "%s's profile" % self.user
