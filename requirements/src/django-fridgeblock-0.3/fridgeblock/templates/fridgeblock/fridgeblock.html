@@ -1,0 +1,113 @@
+{% load hhphelpers %}
+{% load thumbnail %}
+
+{% getsession block as session %}
+	<div id="plan-container">
+	<div id="plan-container-inner">
+
+		<div id="content-container">
+
+			<div id="categories">
+
+				<div id="categorytabs">
+					<ul>
+					{% for category in block.categories %}
+					<li><a href="#category-{{forloop.counter}}">{{category.label}}</a></li>
+					{% endfor %}
+					</ul>
+				</div>
+
+				{% for category in block.categories %}
+				<div id="category-{{forloop.counter}}" style="height: 440px; overflow: auto;">
+
+
+						{% for item in category.item_set.all %}
+
+
+						{% if_magnet_for_item_exists session item %}
+						<div id="item-{{item.id}}-grabber"
+						     class="grabber
+							    grabber-in-menu
+							    {{item.category.css}}
+							    grabber-disabled"
+						     style="background-image: url('{% thumbnail item.category.image 52x52 %}')"
+>
+							<span id="item-{{item.id}}-label" class="label {% if_magnet_for_item_exists session item %}disabled{%else%}{% endif_magnet_for_item_exists %}">{{item.label}}</span>
+						</div>
+						
+						{% else %}
+						<div id="item-{{item.id}}-grabber"
+						     style="background-image: url('{% thumbnail item.category.image 52x52 %}')" class="grabber grabber-in-menu {{item.category.css}}">
+							<span id="item-{{item.id}}-label" class="label {% if_magnet_for_item_exists session item %}disabled{%else%}{% endif_magnet_for_item_exists %}">{{item.label}}</span>
+						</div>
+	  
+						<div id="item-{{item.id}}-popup" class="magnet-popup">
+							<div class="magnet-popup-close"></div>
+							<strong>{{item.category}}</strong><br />
+							 I can beat diabetes by<br />
+							<strong  style="text-transform: lowercase;">{{item.label}}.</strong>
+							<div id="item-{{item.id}}-trash" class="magnet-trash"></div>
+						</div>
+						{% endif_magnet_for_item_exists %}
+
+
+
+
+						{% endfor %}
+
+
+
+
+					</div>
+				{% endfor %}
+				
+			</div>
+	
+		</div>
+
+		<div id="fridge">
+	
+			{% if session.magnet_set.count %}
+			{% for magnet in session.magnet_set.all %}
+	
+			<div id="item-{{magnet.item.id}}-magnet"
+			style="background-image: url('{% thumbnail magnet.item.category.image 52x52 %}')" class="magnet grabber {{magnet.item.category.css}}">
+			<span id="item-{{magnet.item.id}}-label" class="label">{{magnet.item.label}}</span>
+			</div>
+			
+			<div id="item-{{magnet.item.id}}-popup" class="magnet-popup">
+				<div class="magnet-popup-close"></div>
+				<strong>{{magnet.item.category}}</strong>
+				<br />
+				<br />
+				I can beat diabetes by<br />
+				<span style="text-transform: lowercase;">{{magnet.item.label}}.</span>
+				<div id="item-{{magnet.item.id}}-trash" class="magnet-trash"></div>
+			</div>
+	  
+			{% endfor %}
+			{% endif %}
+
+		</div>
+
+		<script type="text/javascript">
+	jQuery(function() {
+	{% for magnet in session.magnet_set.all %}    
+	    positionMagnet(jQuery("#item-{{magnet.item.id}}-magnet"),{{magnet.x}},{{magnet.y}});
+	{% endfor %}
+	});
+	jQuery(function() {
+	    jQuery( "#categories" ).tabs();
+	});
+	</script>
+
+	</div>
+	</div>
+
+</div>
+
+
+<br style="clear: both;"/>
+{% if request.user.is_anonymous %}
+<p class="warning">You are not logged in: Magnet positions will not be saved</p>
+{% endif %}

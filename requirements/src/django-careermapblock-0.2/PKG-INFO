@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: django-careermapblock
+Version: 0.2
+Summary: Career Map Activity PageBlock
+Home-page: UNKNOWN
+Author: Anders Pearson
+Author-email: anders@columbia.edu
+License: BSD
+Description: (see django-pagetree and django-pageblocks)
+Platform: any

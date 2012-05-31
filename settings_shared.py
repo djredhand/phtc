@@ -83,6 +83,7 @@ INSTALLED_APPS = (
     'compressor',
     'registration',
     'userprofile',
+    'django_trace',
 )
 
 ACCOUNT_ACTIVATION_DAYS = 7
